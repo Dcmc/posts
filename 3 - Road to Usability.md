@@ -27,9 +27,9 @@ Now we simply edit our `/boot/syslinux/syslinux.cfg` so that the append line is 
 
 Our init is BSD-style, which is far simpler than the traditional SysV Runlevel style of init used by most Linux distributions. 
 
-Using our BSD-style init, `init` runs a program located at `/etc/startup` which brings up the system, and runs `/etc/shutdown` for shutting down the system. Examples of these two files are located in the same repository as our `init`. 
+Using our BSD-style init, `init` runs a program located at `/bin/startup` which brings up the system, and runs `/bin/shutdown` for shutting down the system. Examples of these two files are located in the same repository as our `init`. 
 
-One of the most fascinating things about the way `init` works is that `/etc/startup` and `/etc/shutdown` are simply executable files. Typically, these are shell scripts marked with an executable flag (`chmod +x`) and a [shebang](http://en.wikipedia.org/wiki/Shebang_%28Unix%29) on the first line. This means we could write our initscripts in any language we wanted to - such as [python](http://lionfacelemonface.wordpress.com/2009/12/29/python-init-scripts/), perl, or even something like C. As long as it's executable, it'll work. 
+One of the most fascinating things about the way `init` works is that `/bin/startup` and `/bin/shutdown` are simply executable files. Typically, these are shell scripts marked with an executable flag (`chmod +x`) and a [shebang](http://en.wikipedia.org/wiki/Shebang_%28Unix%29) on the first line. This means we could write our initscripts in any language we wanted to - such as [python](http://lionfacelemonface.wordpress.com/2009/12/29/python-init-scripts/), perl, or even something like C. As long as it's executable, it'll work. 
 
 For now, we're just going to have to live with the shortcomings of using initscripts written in shell. 
 The most notable of these shortcomings is that everything is executed sequentially, potentially slowing down our boot process.
@@ -37,7 +37,7 @@ We'll come back and change this later, but for now, simple shell scripts won't h
 
 This is great and all, but the question remains, what exactly do we need to put in these startup and shutdown scripts?
 
-This is a tricky question to answer, as we can do anything we want to from within `/etc/{startup,shutdown}`. A better question would be what do we *want* to start and shutdown. 
+This is a tricky question to answer, as we can do anything we want to from within `/bin/{startup,shutdown}`. A better question would be what do we *want* to start and shutdown. 
 Seeing as there aren't very many programs installed at the moment, we need to not only discover what else we need, but also build those before we need to write init scripts. 
 
 ### Getty
